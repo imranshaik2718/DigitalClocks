@@ -2,43 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Document</title>
-  <link rel="stylesheet" href="Clock.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apple Watch Clone with Ticks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #hour, #minute, #second {
+      transition: transform 0.3s ease-in-out;
+      transform-origin: center bottom;
+    }
+    /* tick style */
+    #ticks div {
+      border-radius: 1px;
+      background-color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center bottom;
+    }
+  </style>
 </head>
-<body>
-  <img src="hero3.jpeg" class="hero" alt=" hero ">
-  <div class="container">
-    
-    <div class="clock">
-      <div id="hour" class="hand hour-hand">
-        <i></i>
-      </div>
-      <div id="min" class="hand min-hand">
-        <i></i>
-      </div>
-      <div id="sec" class="hand sec-hand">
-        <i></i>
-      </div>
+<body class="bg-black flex items-center justify-center h-screen">
 
-      <span class="tick"><b>12</b></span>
-      <span class="tick"><b>1</b></span>
-      <span class="tick"><b>2</b></span>
-      <span class="tick"><b>3</b></span>
-      <span class="tick"><b>4</b></span>
-      <span class="tick"><b>5</b></span>
-      <span class="tick"><b>6</b></span>
-      <span class="tick"><b>7</b></span>
-      <span class="tick"><b>8</b></span>
-      <span class="tick"><b>9</b></span>
-      <span class="tick"><b>10</b></span>
-      <span class="tick"><b>11</b></span>
+  <div class="relative w-[300px] h-[300px] rounded-full bg-black border-8 border-zinc-900 shadow-inner overflow-hidden">
+    <!-- Activity Rings -->
+    <div class="absolute inset-0 flex items-center justify-center z-0">
+      <div class="w-[220px] h-[220px] rounded-full border-[20px] border-pink-500"></div>
+      <div class="absolute w-[180px] h-[180px] rounded-full border-[20px] border-lime-400"></div>
+      <div class="absolute w-[140px] h-[140px] rounded-full border-[20px] border-cyan-500"></div>
+      <div class="absolute w-[100px] h-[100px] rounded-full bg-black z-10"></div>
+    </div>
+
+    <!-- Tick Marks Container -->
+    <div id="ticks" class="absolute inset-0 pointer-events-none z-20 -top-4 "></div>
+
+    <!-- Clock Hands -->
+    <div id="hour" class="absolute top-1/2 left-1/2 w-1 h-[60px] bg-white rounded-full origin-bottom transform -translate-x-1/2 -translate-y-full z-20"></div>
+    <div id="minute" class="absolute top-1/2 left-1/2 w-1 h-[80px] bg-white rounded-full origin-bottom transform -translate-x-1/2 -translate-y-full z-30"></div>
+    <div id="second" class="absolute top-1/2 left-1/2 w-[2px] h-[90px] bg-orange-500 rounded-full origin-bottom transform -translate-x-1/2 -translate-y-full z-40"></div>
+
+    <!-- Center Dot -->
+    <div class="absolute top-1/2 left-1/2 w-[8px] h-[8px] bg-orange-400 rounded-full z-50 transform -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Weather & Fitness Icons -->
+    <div class="absolute top-2 left-20 w-9 h-9 rounded-full flex items-center justify-center text-white text-sm">
+      ☁️
+    </div>
+    <div class="absolute top-2 right-20 w-8 h-8 rounded-full flex items-center justify-center text-green-500 text-lg">
+      🏃
     </div>
   </div>
 
-
-
-  <script src="Clock.js"></script>
+  <script src="Clock.js">
+    
+  </script>
 </body>
 </html>
