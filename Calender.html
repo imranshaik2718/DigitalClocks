@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Calendar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+<img
+      src="hero3.jpeg"
+      alt="hero"
+      class="absolute top-0 left-0 w-screen h-screen object-cover z-0 overflow-hidden -ml-1 pointer-events-none"
+    />
+  <div class="bg-black text-white p-4 rounded-[50px] shadow-md z-20 w-70 pb-10">
+    <div id="calendar-header" class="text-center mb-2">
+      <h2 class="text-lg font-semibold ">Month Year</h2>
+    </div>
+    
+   <div class="grid grid-cols-7 gap-1 mt-5 text-sm text-center text-white/70 font-medium">
+      <div class="text-red-200">Sun</div>
+      <div class="text-green-200">Mon</div>
+      <div class="text-violet-200">Tue</div>
+      <div class="text-yellow-200">Wed</div>
+      <div class="text-blue-200">Thu</div>
+      <div class="text-pink-200">Fri</div>
+      <div class="text-purple-200">Sat</div>
+    </div>
+
+   
+    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center text-sm text-white/70 mt-1">
+   
+    </div>
+  </div>
+
+  <script>
+    const header = document.getElementById("calendar-header").querySelector("h2");
+    const daysContainer = document.getElementById("calendar-days");
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth(); // 0 = Jan
+    const monthNames = ["January", "February", "March", "April", "May", "June", 
+                        "July", "August", "September", "October", "November", "December"];
+
+  header.textContent = `${monthNames[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1).getDay();
+
+  
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+   
+    daysContainer.innerHTML = "";
+
+  
+    for (let i = 0; i < firstDay; i++) {
+      const blank = document.createElement("div");
+      blank.className = "py-1";
+      daysContainer.appendChild(blank);
+    }
+
+  for (let i = 1; i <= lastDate; i++) {
+      const day = document.createElement("div");
+      day.textContent = i;
+      day.className = "py-1";
+      
+  if (i === today.getDate()) {
+        day.className += " bg-white  text-black rounded";
+      }
+
+      daysContainer.appendChild(day);
+    }
+  </script>
+
+</body>
+</html>
